@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Для любимого ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9dbb,#ffd1dc,#ffeaf2);
+}
+
+.card{
+    width:90%;
+    max-width:380px;
+    background:white;
+    padding:20px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+    position:relative;
+    z-index:2;
+}
+
+img{
+    width:70%;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+
+h2{
+    color:#ff2d75;
+    margin-bottom:25px;
+}
+
+.buttons{
+    position:relative;
+    height:120px;
+}
+
+button{
+    border:none;
+    border-radius:30px;
+    padding:15px 30px;
+    font-size:20px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#yes{
+    background:#ff2d75;
+    color:white;
+}
+
+#yes:hover{
+    transform:scale(1.08);
+}
+
+#no{
+    position:absolute;
+    left:200px;
+    top:0;
+    background:#777;
+    color:white;
+}
+
+#message{
+    display:none;
+    margin-top:25px;
+    color:#ff2d75;
+    animation:showLove 1s ease forwards;
+}
+
+#message h1{
+    font-size:34px;
+    margin-bottom:15px;
+}
+
+#message p{
+    font-size:20px;
+    line-height:1.6;
+}
+
+@keyframes showLove{
+    from{
+        opacity:0;
+        transform:scale(.5);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.heart{
+    position:fixed;
+    top:-50px;
+    pointer-events:none;
+    animation:fall linear forwards;
+    z-index:9999;
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-30px) rotate(0deg);
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<!-- Замените photo.jpg на название вашей фотографии -->
+<img src="img/рома.jpg" alt="Наше фото">
+
+<h2>Любишь ли ты свою девушку? 🥺❤️</h2>
+
+<div class="buttons">
+<button id="yes">Да ❤️</button>
+<button id="no">Нет 💔</button>
+</div>
+
+<div id="message">
+
+<h1>❤️ Я так и знала! ❤️</h1>
+
+<p>
+Спасибо тебе за то, что ты появился в моей жизни.
+
+<br
+
+ день рядом с тобой делает меня счастливее.
+
+<br
+
+ь ценю твою заботу, твою поддержку, твои объятия и каждую минуту, проведённую вместе.
+
+<br
+
+ой самый любимый человек. ❤️
+
+ тебя всем сердцем.
+
+гда вместе 💖
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const no=document.getElementById("no");
+
+function moveButton(){
+
+let x=Math.random()*(window.innerWidth-120);
+let y=Math.random()*(window.innerHeight-70);
+
+no.style.position="fixed";
+no.style.left=x+"px";
+no.style.top=y+"px";
+}
+
+no.addEventListener("mouseover",moveButton);
+
+no.addEventListener("touchstart",function(e){
+e.preventDefault();
+moveButton();
+});
+
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+
+const emojis=["❤️","💖","💕","💗","💘","💝","💞"];
+
+heart.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(Math.random()*20+20)+"px";
+
+heart.style.animationDuration=(Math.random()*3+3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+}
+
+let started=false;
+
+document.getElementById("yes").onclick=function(){
+
+if(started) return;
+
+started=true;
+
+document.querySelector(".buttons").style.display="none";
+
+document.getElementById("message").style.display="block";
+
+setInterval(createHeart,120);
+
+};
+
+</script>
+
+</body>
+</html>
